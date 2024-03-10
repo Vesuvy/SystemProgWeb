@@ -1,0 +1,139 @@
+html {
+    box-sizing: border-box;
+}
+*,*::before,*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing:inherit;
+}
+
+body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+    height: 100vh;
+
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: black;  
+    
+}
+
+.container {
+    width: 800px;
+    height: 400px;
+    padding: 30px;
+    flex-direction: column;
+    justify-content: center;
+
+    background: rgb(209, 64, 185);
+    border: 2px solid #9845a3a1;
+    border-radius: 20px;
+}
+
+h1 {
+    color:aliceblue;
+    text-align: center;
+    margin-bottom: 25px;;
+}
+
+.input-container {
+    display: flex;    
+    flex-wrap: wrap; /*Перенос*/
+    justify-content: center;
+   /* justify-content: space-between;*/
+    position: relative;
+    margin-bottom: 15px;
+    gap: 2px;
+}
+
+.todo-input {    
+    flex: 1;
+    outline: none;
+    padding: 4px 10px 4px 10px;
+    color: black;
+
+}
+.add-button,.clear-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 100px;
+}
+.add-button {
+    background-color: rgb(89, 196, 89);
+}
+.add-button:hover {
+    background-color: green;
+}
+.clear-button {
+    background-color: rgb(187, 69, 69);
+}
+.clear-button:hover {
+    background-color: red;
+}
+
+.todos {
+    text-align: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    
+    border-radius: 20px;
+    list-style: none;
+    list-style-type: none;
+    cursor: pointer;
+    
+    margin-bottom: 2px;
+    background: #8e79ed;
+
+    position: relative;
+}
+ul li:nth-child(odd) {
+    background-color: rgb(191, 0, 255);
+}
+ul li.checked {
+    background: red;
+    color: #fff;
+    text-decoration: line-through;
+}
+ul li.checked::before {
+    content: "\2713"; /* Юникод символ галочки */
+    position: absolute;
+    left: 10px; /* Отступ слева */
+}
+ul li::after {
+    content: "\00D7"; /* Юникод символ крестика */
+    position: absolute;
+    right: 10px;
+}
+ul li:hover {
+    background-color: rgb(107, 94, 106);
+}
+
+
+
+.todos-container {
+    overflow-y: auto; /* вертикальный скроллбар */
+    max-height: 200px; /* макс высота списка */
+}
+.todos-container::-webkit-scrollbar-track {
+    background-color: aliceblue;
+    border-radius: 20px;
+}
+.todos-container::-webkit-scrollbar {
+    width: 7px;
+}
+.todos-container::-webkit-scrollbar-thumb {
+    background: #4a4343;
+    border-radius: 20px;
+}
+
+

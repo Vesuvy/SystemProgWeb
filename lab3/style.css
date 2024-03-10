@@ -36,7 +36,7 @@ body {
 .input-container {
     --size: 50px;
     display: flex;
-    margin: 16px 0 32px;
+    margin: 16px 0px;
 }
 .input-container input{
     margin-right: 16px;
@@ -67,8 +67,8 @@ body {
     margin-left: 16px;
     background: var(--deleteBtm);
 }
-
 .todo_list {
+    margin-top: 15px;
 }
 .todo_list >*:not(:last-child) {
     margin-bottom: 10px;
