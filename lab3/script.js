@@ -1,9 +1,15 @@
 const dom = {
-    new_task : document.getElementById('new-task'),
+    new_task : document.getElementById('new-task'),    
+    tasks : document.getElementById('tasks'),
+    count : document.getElementById('count'),
+
     add_btm : document.getElementById('add-btm'),
     delete_all_btm : document.getElementById('delete-all-btm'),
-    tasks : document.getElementById('tasks'),
-    count : document.getElementById('count')
+    sort_ByName_Btn : document.getElementById('sort-by-name-btn'),
+    show_Completed_Btn : document.getElementById('show-completed-btn'),
+    show_Incomplete_Btn : document.getElementById('show-incomplete-btn'),
+    show_AllTasks_Btn : document.getElementById('show-allTasks-btn')
+
 }
 
 const tasks = [] // массив задач
@@ -17,6 +23,46 @@ dom.add_btm.onclick = () => {
         tasksRender(tasks)
     }
 }
+// отследить клик по кнопке Сортировать по наименованию
+dom.sort_ByName_Btn.onclick = () => {
+    tasks.sort((a, b) => a.text.localeCompare(b.text));
+    tasksRender(tasks);
+}
+// отследить клик по кнопке Показать сделанные
+dom.show_Completed_Btn.onclick = () => {
+    const completedTasks = tasks.filter(task => task.isComplete);
+    tasksRender(completedTasks);
+}
+// отследить клик по кнопке Показать несделанные
+dom.show_Incomplete_Btn.onclick = () => {
+    const incompleteTasks = tasks.filter(task => !task.isComplete);
+    tasksRender(incompleteTasks);
+}
+dom.show_AllTasks_Btn.onclick = () => {
+   // const alltasks = tasks;
+    tasksRender(tasks);
+}
+// отслеживаем клик по чекбоксу задачи
+dom.tasks.onclick = (event) => {
+    const target = event.target
+    const isCheckboxEl = target.classList.contains('todo_checkbox-div')
+    const isDeleteEl = target.classList.contains('todo_task-delete')
+
+    if (isCheckboxEl) {
+        const task = target.parentElement.parentElement
+        const taskId = task.getAttribute('id')
+        changeTaskStatus(taskId, tasks)
+        tasksRender(tasks)
+    }
+
+    if (isDeleteEl) {
+        const task = target.parentElement
+        const taskId = task.getAttribute('id')
+        deleteTask(taskId, tasks)
+        tasksRender(tasks)
+    }
+}
+
 // функ добавления задачи
 function addTask(text, list) {
     const timestamp = Date.now()
@@ -41,6 +87,34 @@ function isNotHaveTask(text, list) {
 
     return isNotHave
 }
+
+
+
+// Функция изменения статуса задачи
+function changeTaskStatus(id, list) {
+    list.forEach((task) => {
+        if (task.id == id) {
+            task.isComplete = !task.isComplete
+        }
+    })
+}
+
+// Функция удаления задачи
+function deleteTask(id, list) {
+    list.forEach((task, idx) =>{
+        if (task.id == id) {
+            list.splice(idx, 1)  // вырезаем 1 элемент (то есть вместо элементра "empty" в массиве, будет ничего)
+        }
+    })
+
+}
+
+// Вывод количества задач
+function renderTasksCount(list) {
+    dom.count.innerHTML = list.length
+}
+
+
 
 // Функция вывода списка задач
 function tasksRender(list) {
@@ -69,52 +143,6 @@ function tasksRender(list) {
     dom.tasks.innerHTML = htmlList
 
     renderTasksCount(list)
-}
-
-// отслеживаем клик по чекбоксу задачи
-dom.tasks.onclick = (event) => {
-    const target = event.target
-    const isCheckboxEl = target.classList.contains('todo_checkbox-div')
-    const isDeleteEl = target.classList.contains('todo_task-delete')
-
-    if (isCheckboxEl) {
-        const task = target.parentElement.parentElement
-        const taskId = task.getAttribute('id')
-        changeTaskStatus(taskId, tasks)
-        tasksRender(tasks)
-    }
-
-    if (isDeleteEl) {
-        const task = target.parentElement
-        const taskId = task.getAttribute('id')
-        deleteTask(taskId, tasks)
-        tasksRender(tasks)
-    }
-}
-
-// Функция изменения статуса задачи
-function changeTaskStatus(id, list) {
-    list.forEach((task) => {
-        if (task.id == id) {
-            task.isComplete = !task.isComplete
-        }
-    })
-}
-
-// Функция удаления задачи
-function deleteTask(id, list) {
-    list.forEach((task, idx) =>{
-        if (task.id == id) {
-            list.splice(idx, 1)  // вырезаем 1 элемент (то есть вместо элементра "empty" в массиве, будет ничего)
-        }
-    })
-
-}
-
-
-// Вывод количества задач
-function renderTasksCount(list) {
-    dom.count.innerHTML = list.length
 }
 
 
