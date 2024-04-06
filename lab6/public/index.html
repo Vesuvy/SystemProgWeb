@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<hea>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/jpegicon1.ico" image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">   
+    <title>lab 6 todo + node</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Список Дел</h1>
+        <div class="input-container">
+            <input id="new-task" class="text" placeholder="Новая задача...">
+            <button id="add-btm" class="todo_add">+</button>
+            <button id="delete-all-btm" class="todo_delete">-</button>
+        </div>
+        <div class="todo_tasks-count">
+            <span>Всего задач:</span>
+            <strong id="count">0</strong>
+        </div>
+        <div class="todo-options">
+            <button id="sort-by-name-btn">Сортировать по наименованию</button>
+            <button id="show-completed-btn">Показать сделанные</button>
+            <button id="show-incomplete-btn">Показать несделанные</button>
+            <button id="show-allTasks-btn">Показать все</button>
+        </div>
+        <div id="tasks" class="todo_list"></div>
+    </div>
+<script src="../src/index.js"></script>
+</body>
+</html>
