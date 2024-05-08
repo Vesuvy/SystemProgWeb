@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React OnlyEven</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function OnlyEven(props) {
+      const evenArr = props.arr.filter(num => num % 2 === 0);
+
+      return (
+        <div>
+          {evenArr.map(num => (
+            <div key={num}>{num}</div>
+          ))}
+        </div>
+      );
+    }
+
+    function App() {
+      const arr = [14, 5, 6, 12, 21, 2];
+
+      return (
+        <div>
+          <OnlyEven arr={arr} />
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+  
+</body>
+</html>
