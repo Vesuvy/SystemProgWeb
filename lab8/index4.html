@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Toggle Button Color</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function ToggleButtonColor() {
+      const [buttonColor, setButtonColor] = React.useState('red');
+
+      const toggleColor = () => {
+        setButtonColor(buttonColor === 'red' ? 'green' : 'red');
+      };
+
+      const btnStyle = {
+        padding: '15px',
+        backgroundColor: buttonColor,
+        color: 'black',
+        cursor: 'pointer',
+        borderRadius: '18px',
+      };
+
+      return (
+        <div>
+          <button onClick={toggleColor} style={btnStyle}>Toggle Button Color</button>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<ToggleButtonColor />, document.getElementById('root'));
+  </script>
+</body>
+</html>
